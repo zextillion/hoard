@@ -63,6 +63,7 @@ export default function CreateAccount() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'omit',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
         })
         .then(response => response.json())
@@ -89,7 +90,7 @@ export default function CreateAccount() {
             headers: {
                 'Content-Type': 'application/json'
               },
-            credentials: 'include',
+            credentials: 'omit',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
         })
         .then(response => {
