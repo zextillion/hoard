@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.text())
 app.options('*', cors())
 app.use(cors({
-    origin: "https://hoard-fyi.herokuapp.com",
+    origin: "https://hoard-api.onrender.com",
     credentials: true,
 }))
 app.use('/igdb', igdbRouter)

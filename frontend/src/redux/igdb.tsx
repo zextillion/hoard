@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const authToken = "PLEASE LET ME IN" // Update every now and then
-const baseServerUrl = "https://hoard-fyi.herokuapp.com"
+const baseServerUrl = "https://hoard-api.onrender.com"
 
 export const igdbSlice = createSlice({
   name: 'igdb',
