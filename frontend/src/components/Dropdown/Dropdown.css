@@ -1,0 +1,31 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    top: 2rem;
+    width: 30rem;
+    transform: translateX(-45%);
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    border: 2rem;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    --speed: 0.5;
+
+    display:flex;
+    gap: 0.5rem;
+    align-items: center;
+    transition: background var(3.5);
+}
+
+.icon-button-left {
+    width:1rem;
+}
+
+.dropdown-item:hover {
+    background-color: antiquewhite;
+}
