@@ -92,7 +92,9 @@ export default function CreateAccount() {
             credentials: 'include',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            return response.json()})
         .then(data => {
             console.log(data)
         })

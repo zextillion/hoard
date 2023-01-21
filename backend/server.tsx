@@ -11,6 +11,7 @@ async function main() {
 const app = express()
 app.use(express.json())
 app.use(express.text())
+app.options('*', cors())
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
