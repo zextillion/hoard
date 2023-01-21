@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const authToken = "PLEASE LET ME IN" // Update every now and then
-const baseServerUrl = 'http://localhost:4269'
+const baseServerUrl = "https://hoard-fyi.herokuapp.com"
 
 export const dbSlice = createSlice({
   name: 'db',

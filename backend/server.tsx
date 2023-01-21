@@ -11,7 +11,10 @@ async function main() {
 const app = express()
 app.use(express.json())
 app.use(express.text())
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}))
 app.use('/igdb', igdbRouter)
 app.use('/db', dbRouter)
 

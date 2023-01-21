@@ -7,6 +7,9 @@
     "start": "node server.tsx",
     "devStart": "nodemon server.tsx"
   },
+  "engines" : {
+    "node": "19.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

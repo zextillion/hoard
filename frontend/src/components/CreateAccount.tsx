@@ -56,7 +56,8 @@ export default function CreateAccount() {
             })
         }
 
-        fetch('http://localhost:4269/db/createUser', {  // Enter your IP address here
+        console.log('fetching https://hoard-fyi.herokuapp.com/db/createUser')
+        fetch('https://hoard-fyi.herokuapp.com/db/createUser', {  // Enter your IP address here
             method: 'POST', 
             mode: 'cors',
             headers: {
@@ -81,7 +82,8 @@ export default function CreateAccount() {
         event.preventDefault()
         
         const {confirmPassword, ...userData} = formData
-        fetch('http://localhost:4269/db/login', {  // Enter your IP address here
+        console.log('fetching https://hoard-fyi.herokuapp.com/db/login')
+        fetch('https://hoard-fyi.herokuapp.com/db/login', {  // Enter your IP address here
             method: 'POST', 
             mode: 'cors',
             headers: {
