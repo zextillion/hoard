@@ -33,6 +33,7 @@ export const igdbApi = createApi({
         headers: {
           'Accept': 'text/plain',
           'Authorization': authToken,
+          'Origin': "https://hoard.fyi"
         },
         body: `${fields.toString()}`
       })
@@ -45,6 +46,7 @@ export const igdbApi = createApi({
         headers: {
           'Accept': 'text/plain',
           'Authorization': authToken,
+          'Origin': "https://hoard.fyi"
         },
         body: coverIds.toString()
       })
@@ -57,6 +59,7 @@ export const igdbApi = createApi({
         headers: {
           'Accept': 'text/plain',
           'Authorization': authToken,
+          'Origin': "https://hoard.fyi"
         },
         body: coverIds.toString()
       })

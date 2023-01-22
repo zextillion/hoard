@@ -25,6 +25,7 @@ export const dbApi = createApi({
         headers: {
           'Accept': 'application/json',
           'Authorization': authToken,
+          'Origin': "https://hoard.fyi"
         },
         body: body
       })
@@ -37,6 +38,7 @@ export const dbApi = createApi({
         headers: {
           'Accept': 'application/json',
           'Authorization': authToken,
+          'Origin': "https://hoard.fyi"
         },
         body: body
       })

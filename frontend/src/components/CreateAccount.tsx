@@ -61,7 +61,8 @@ export default function CreateAccount() {
             method: 'POST', 
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Origin': "https://hoard.fyi"
             },
             credentials: 'include',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
@@ -88,7 +89,8 @@ export default function CreateAccount() {
             method: 'POST', 
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Origin': "https://hoard.fyi"
               },
             credentials: 'include',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
@@ -110,7 +112,8 @@ export default function CreateAccount() {
             method: 'POST', 
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Origin': "https://hoard.fyi"
               },
             credentials: 'include',
             body: JSON.stringify(userData) // body data type must match "Content-Type" header
