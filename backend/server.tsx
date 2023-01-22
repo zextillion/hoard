@@ -1,6 +1,6 @@
 const { express, cors } = require('./utility.tsx')
 const igdbRouter = require('./routes/igdb.tsx')
-const dbRouter = require("./routes/db.tsx")
+const dbRouter = require("./routes/dbRoute.tsx")
 const { config } = require('dotenv')
 
 async function main() {
