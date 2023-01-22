@@ -13,7 +13,8 @@ app.use(express.json())
 app.use(express.text())
 app.options('*', cors())
 app.use(cors({
-    origin: ["https://hoard.onrender.com", "http://localhost:3000"],
+    origin: ["https://hoard.fyi", "https://hoard.onrender.com"],
+    methods: 'GET,PUT,POST,DELETE',
     credentials: true,
 }))
 app.use('/igdb', igdbRouter)
