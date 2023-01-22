@@ -25,6 +25,11 @@ router.use(session({
     resave: false,
     saveUninitialized: false
 }))
+router.use(cors({
+    origin: ["https://hoard.fyi", "https://hoard.onrender.com"],
+    methods: 'GET,PUT,POST,DELETE',
+    credentials: true,
+}))
 router.use(passport.initialize())
 router.use(passport.session())
 router.use(methodOverride('_method'))
