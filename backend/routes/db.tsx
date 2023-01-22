@@ -28,6 +28,10 @@ router.use(session({
 router.use(passport.initialize())
 router.use(passport.session())
 router.use(methodOverride('_method'))
+router.use((req, res, next) => {
+    res.set('Access-Control-Allow-Origin', req.headers.origin)
+    next()
+})
  
 async function getUserByProperty(mongoProperty, value) {
     const uri = process.env.DB_URI;

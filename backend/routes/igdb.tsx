@@ -6,7 +6,7 @@ const headers = {
     'Authorization': `Bearer ${twitchAccessToken}`,
 }
 
-function accessIgdbEndpoint(res, url, data) {
+function accessIgdbEndpoint(req, res, url, data) {
     axios({
         url: url,
         method: 'POST',
@@ -14,29 +14,30 @@ function accessIgdbEndpoint(res, url, data) {
         data: data
     })
     .then(response => {
+        res.set('Access-Control-Allow-Origin', req.headers.origin)
         res.send(response.data)
     })
     .catch(err => {
-        res.status(err.response.status).send(new Error(err))
+        res.send(err)
     });
 }
 
 router
 .route('/games')
 .post((req, res) => {
-    accessIgdbEndpoint(res, "https://api.igdb.com/v4/games", `fields ${req.body};`)
+    accessIgdbEndpoint(req, res, "https://api.igdb.com/v4/games", `fields ${req.body};`)
 })
 
 router
 .route('/covers')
 .post((req, res) => {
-    accessIgdbEndpoint(res, "https://api.igdb.com/v4/covers", `fields url; where id = (${req.body.toString()});`)
+    accessIgdbEndpoint(req, res, "https://api.igdb.com/v4/covers", `fields url; where id = (${req.body.toString()});`)
 })
 
 router
 .route('/releaseDates')
 .post((req, res) => {
-    accessIgdbEndpoint(res, "https://api.igdb.com/v4/release_dates", `fields date,platform,region; where id = (${req.body.toString()});`)
+    accessIgdbEndpoint(req, res, "https://api.igdb.com/v4/release_dates", `fields date,platform,region; where id = (${req.body.toString()});`)
 })
 
 
