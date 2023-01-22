@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.tsx",
+  "main": "index.tsx",
   "scripts": {
-    "start": "node server.tsx",
-    "devStart": "nodemon server.tsx"
+    "start": "node index.tsx",
+    "devStart": "nodemon index.tsx"
   },
   "engines": {
     "node": "19.x"
@@ -14,10 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/connect-mongo": "^3.1.3",
     "ajv": "^8.11.2",
     "axios": "^1.2.2",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
+    "connect-session-mongo": "^0.0.9",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -26,6 +28,7 @@
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "method-override": "^3.0.0",
+    "mongo-store": "^0.0.2",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.3",
     "mongoose-session-store": "^0.0.3",

@@ -2,7 +2,8 @@
 //     require('dotenv').config()
 // }
 
-const db = require('../db.tsx')
+require('dotenv').config()
+
 const mongoose = require('mongoose');
 const Ajv = require('ajv')
 const { JSONSchemaType } = require('ajv')
@@ -14,6 +15,20 @@ const methodOverride = require('method-override')
 
 const { router } = require('../utility.tsx')
 const initializePassport = require('../passport-config.tsx')
+
+mongoose.set('strictQuery', false)
+mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log("Connected to MongoDB!")
+});
+
 initializePassport(
     passport, 
     async email => User.findOne({ email }),
@@ -22,7 +37,6 @@ initializePassport(
 
 router.use(flash())
 router.use(session({
-    store: new MongoStore({ mongooseConnection: db }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
@@ -122,7 +136,7 @@ router.route('/createUser')
 
 router
 .route('/login')
-.post(checkNotAuthenticated, (req, res, next) => {
+.post(checkNotAuthenticated, async (req, res, next) => {
     try {
         const user = await passport.authenticate('local', (err, user, info) => {
             if (err) {

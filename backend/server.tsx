@@ -7,7 +7,6 @@ async function main() {
     config()
 }
 
-
 const app = express()
 app.use(express.json())
 app.use(express.text())
@@ -23,4 +22,4 @@ main()
 
 app.listen(process.env.PORT || 4269, () => console.log("API Server is running..."))
 
-module.exports = express
+module.exports = app
