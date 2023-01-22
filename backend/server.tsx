@@ -11,7 +11,6 @@ async function main() {
 const app = express()
 app.use(express.json())
 app.use(express.text())
-app.options('*', cors())
 app.use(cors({
     origin: ["https://hoard.fyi", "https://hoard.onrender.com"],
     methods: 'GET,PUT,POST,DELETE',
