@@ -172,6 +172,7 @@ router.route('/login')
 
 router.route('/logout')
 .delete(async (req, res) => {
+    console.log("Try to logout")
     try {
         await req.logOut();
         res.jsonResponse({
