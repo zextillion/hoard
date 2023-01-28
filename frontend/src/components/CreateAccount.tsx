@@ -1,10 +1,17 @@
 import React, { ChangeEvent } from "react";
 import { FormEvent } from "react";
-import { dbApi } from "../redux/db";
 import InputField from './InputField'
+import { getCookie } from 'typescript-cookie'
+import { logIn } from "../redux/auth";
 import './AccountSignIn.css'
+import { useAppDispatch } from "../redux/hooks";
+import store from "../redux/store";
+import { Screens } from "./LoggedOutScreen";
 
-export default function CreateAccount() {
+export default function CreateAccount(props:any) {
+    // const baseUrl = 'https://hoard-api.onrender.com'
+    const baseUrl = "http://localhost:4269"
+
     const [formData, setFormData] = React.useState({
         firstName: '',
         lastName: '',
@@ -56,8 +63,7 @@ export default function CreateAccount() {
             })
         }
 
-        console.log('fetching https://hoard-api.onrender.com/db/createUser')
-        fetch('https://hoard-api.onrender.com/db/createUser', {  // Enter your IP address here
+        fetch(`${baseUrl}/db/createUser`, {  // Enter your IP address here
             method: 'POST', 
             mode: 'cors',
             headers: {
@@ -80,35 +86,11 @@ export default function CreateAccount() {
         })
     }
 
-    const handleLogin = async (event:FormEvent) => {
-        event.preventDefault()
-        
-        const {confirmPassword, ...userData} = formData
-        console.log('fetching https://hoard-api.onrender.com/db/login')
-        fetch('https://hoard-api.onrender.com/db/login', {  // Enter your IP address here
-            method: 'POST', 
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Origin': "https://hoard.fyi"
-              },
-            credentials: 'include',
-            body: JSON.stringify(userData) // body data type must match "Content-Type" header
-        })
-        .then(response => {
-            console.log(response)
-            return response.json()})
-        .then(data => {
-            console.log(data)
-        })
-    }
-
-
     const handleLogOut = async (event:FormEvent) => {
         event.preventDefault()
         
         const {confirmPassword, ...userData} = formData
-        fetch('https://hoard-api.onrender.com/db/logout?_method=DELETE', {  // Enter your IP address here
+        fetch(`${baseUrl}/db/logout?_method=DELETE`, {
             method: 'POST', 
             mode: 'cors',
             headers: {
@@ -124,12 +106,16 @@ export default function CreateAccount() {
         })
     }
 
+    function handleLogin(event:React.MouseEvent<HTMLButtonElement>) {
+        props.setScreen(Screens.LOG_IN)
+    }
+
     return (
     <div className ="w-1/2 bg-cyan-300 p-8">
         <div className="flex justify-center">
             <label className="text-4xl">Signup</label>
         </div>
-        <form onSubmit={handleLogin} className="flex flex-col gap-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
             <InputField 
                 name='displayName' 
                 label="Display Name"
@@ -172,6 +158,7 @@ export default function CreateAccount() {
             />
             <button>Create Account</button>
         </form>
+        <button onClick={handleLogin}>Log In</button>
     </div>
     )
 }

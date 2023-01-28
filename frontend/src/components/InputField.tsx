@@ -15,16 +15,16 @@ export default function InputField(props: InputFieldProperties) {
             type={props.type}
             name={props.name}
             placeholder={props.placeholder}
-            required onChange={props.onChange }
             value={props.value}
-            className="inputField"/>
+            className="inputField"
+            required onChange={props.onChange } />
         : <input 
             type={props.type}
             name={props.name}
             placeholder={props.placeholder}
             onChange={props.onChange }
             value={props.value}
-            className="inputField"/>
+            className="inputField" />
 
     return (
         <div className="flex flex-col gap-1">

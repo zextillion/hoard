@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 export default function NavBar(props: {auth: Auth}) {
     const dispatch = useAppDispatch()
 
-    function signInWithGoogle() {
+    function signIn() {
         const provider = new GoogleAuthProvider()
         signInWithPopup(props.auth, provider)
             .then((result) => {
@@ -17,7 +17,7 @@ export default function NavBar(props: {auth: Auth}) {
                 // The signed-in user info.
                 const user = result.user;
                 // ...
-                dispatch(logIn({ user:user, token: token as string }))
+                // dispatch(logIn({ user:user, token: token as string }))
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -43,10 +43,10 @@ export default function NavBar(props: {auth: Auth}) {
             })
     }
 
-    const token = useAppSelector(state => state.authState.token)
+    const token = useAppSelector(state => state.authState.session)
     const signInOrOutElement = <div>
         { token === "" ? 
-            <button type="button" onClick={signInWithGoogle}>Sign In With Google</button> 
+            <button type="button" onClick={signIn}>Sign In</button> 
             : <button type="button" onClick={signOut}>Sign Out</button>
         }
     </div>

@@ -23,16 +23,30 @@ mongoose.connect(process.env.DB_URI, {
 });
 
 const db = mongoose.connection;
-
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("Connected to MongoDB!")
 });
 
+const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    games: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Game'
+    }]
+});
+const User = mongoose.model('User', userSchema);
 initializePassport(
     passport, 
-    async email => User.findOne({ email }),
-    async id => User.findById(id)
+    async email => User.findOne({ email })
 )
 
 router.use(flash())
@@ -56,24 +70,6 @@ function jsonResponse(req, res, next) {
     }
     next();
 }
-
-const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    games: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Game'
-    }]
-});
-
-const User = mongoose.model('User', userSchema);
 
 async function createUserDocument(userJson) {
     try {
@@ -134,42 +130,47 @@ router.route('/createUser')
 });
 
 
-router
-.route('/login')
+router.route('/login')
 .post(checkNotAuthenticated, async (req, res, next) => {
     try {
-        const user = await passport.authenticate('local', (err, user, info) => {
+        await passport.authenticate('local', { session: false }, async (err, user, info) => {
             if (err) {
                 return next(err)
             }
             if (!user) {
-                throw new Error(info.message)
+                return res.jsonResponse({
+                    success: false,
+                    message: info.message
+                })
             }
-            return user
+            
+            await req.logIn(user, (err) => {
+                if (err) {
+                    return res.jsonResponse({
+                        success: false,
+                        message: info.message
+                    })
+                }
+            })
+
+            res.cookie('session', req.user, { secure: true, signed: true, expires: new Date(new Date().setMonth(new Date().getMonth() + 1)) }) // Expires in one month
+            res.jsonResponse({
+                success: true,
+                message: "Authentication successful"
+            })
         })
         (req, res, next)
-        
-        await req.logIn(user, (err) => {
-            if (err) {
-                throw err
-            }
-        })
-
-        console.log("Log in")
-        res.jsonResponse({
-            success: true,
-            message: "Authentication successful"
-        })
     }
     catch(err) {
+        res.jsonResponse({
+            success: false,
+            message: err
+        })
         next(err)
     }
-    
-        
 })
 
-router
-.route('/logout')
+router.route('/logout')
 .delete(async (req, res) => {
     try {
         await req.logOut();
