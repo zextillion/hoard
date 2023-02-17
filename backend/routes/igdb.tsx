@@ -14,10 +14,13 @@ function accessIgdbEndpoint(req, res, url, data) {
         data: data
     })
     .then(response => {
+        console.log("Response from IGDB")
         res.set('Access-Control-Allow-Origin', req.headers.origin)
         res.send(response.data)
     })
     .catch(err => {
+        console.log("Error from IGDB")
+        console.log(err)
         res.send(err)
     });
 }

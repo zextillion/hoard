@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { baseServerUrl } from './db'
+
 
 export const authSlice = createSlice({
   name: 'authState',
@@ -19,11 +21,8 @@ export const authSlice = createSlice({
   },
 })
 
-
-const baseUrl = "http://localhost:4269"
-
 const handleLogOut = async () => {
-  fetch(`${baseUrl}/db/logout?_method=DELETE`, {
+  fetch(`${baseServerUrl}/db/logout?_method=DELETE`, {
       method: 'POST', 
       mode: 'cors',
       headers: {
@@ -39,7 +38,7 @@ const handleLogOut = async () => {
 }
 
 export const getIsLoggedIn = 
-  fetch(`${baseUrl}/db/isLoggedIn`, {
+  fetch(`${baseServerUrl}/db/isLoggedIn`, {
     method: 'GET', 
     mode: 'cors',
     headers: {
