@@ -153,7 +153,7 @@ router.route('/login')
                 }
             })
 
-            res.cookie('session', req.user, { secure: true, signed: true, expires: new Date(new Date().setMonth(new Date().getMonth() + 1)) }) // Expires in one month
+            res.cookie('sessionId', req.user, { secure: true, signed: true, expires: new Date(new Date().setMonth(new Date().getMonth() + 1)) }) // Expires in one month
             res.jsonResponse({
                 success: true,
                 message: "Authentication successful"

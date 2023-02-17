@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react'
-import { logOut } from '../redux/auth'
-import store from '../redux/store'
-import { GameCardTest } from './GameCard'
+import { logOut } from '../middleware/auth'
+import store from '../middleware/store'
+import Database from './Database'
+import { GameBannerTest } from './GameBanner'
 
 
 export default function Content() {
@@ -11,7 +12,12 @@ export default function Content() {
 
     return (
         <div>
-            <GameCardTest />
+            <h1 className="flex bg-orange-400 justify-center text-6xl">Hoard</h1>                
+            <section className="flex flex-col items-center w-10/12">
+                <h1 className="font-bold text-6xl">Your Backlog</h1>
+                <Database />
+            </section>
+
             <button onClick={handleLogOut}>Log Out</button>
         </div>
     )

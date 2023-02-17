@@ -1,6 +1,6 @@
 import axios from "axios"
-import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import igdb, { igdbApi, setGames } from "../redux/igdb"
+import { useAppDispatch, useAppSelector } from "../middleware/hooks"
+import igdb, { igdbApi, setGames } from "../middleware/igdb"
 import GameCard, { GameData, GameProperties } from "./GameCard"
 
 export default function Database() {

@@ -1,11 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { FormEvent } from "react";
 import InputField from './InputField'
-import { getCookie } from 'typescript-cookie'
-import { logIn } from "../redux/auth";
 import './AccountSignIn.css'
-import { useAppDispatch } from "../redux/hooks";
-import store from "../redux/store";
 import { Screens } from "./LoggedOutScreen";
 
 export default function CreateAccount(props:any) {

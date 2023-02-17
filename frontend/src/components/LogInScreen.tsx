@@ -1,8 +1,8 @@
 import axios from "axios"
 import React, { ChangeEvent, FormEvent, MouseEventHandler } from "react"
 import { getCookie } from "typescript-cookie"
-import { logIn } from "../redux/auth"
-import store from "../redux/store"
+import { logIn } from "../middleware/auth"
+import store from "../middleware/store"
 import InputField from "./InputField"
 import { Screens } from "./LoggedOutScreen"
 
@@ -42,9 +42,10 @@ export default function LogInScreen(props:any) {
         .then(data => {
             console.log(data)
             if (data.success) {
-                const sessionCookie = getCookie('session')
-                if (sessionCookie) {
-                    store.dispatch(logIn(sessionCookie))
+                const sessionId = getCookie('sessionId')
+                console.log(sessionId)
+                if (sessionId) {
+                    store.dispatch(logIn(sessionId))
                 }
             }
         })

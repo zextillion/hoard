@@ -1,8 +1,8 @@
-import { logIn, logOut } from "../redux/auth"
+import { logIn, logOut } from "../middleware/auth"
 import {
     Auth, GoogleAuthProvider, signInWithPopup
 } from 'firebase/auth';
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../middleware/hooks";
 
 export default function NavBar(props: {auth: Auth}) {
     const dispatch = useAppDispatch()
@@ -43,7 +43,7 @@ export default function NavBar(props: {auth: Auth}) {
             })
     }
 
-    const token = useAppSelector(state => state.authState.session)
+    const token = useAppSelector(state => state.authState.sessionId)
     const signInOrOutElement = <div>
         { token === "" ? 
             <button type="button" onClick={signIn}>Sign In</button> 

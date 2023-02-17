@@ -16,7 +16,7 @@ export interface GameData {
     data: GameProperties
 }
 
-export default function GameCard({data}:GameData) {
+export default function GameBanner({data}:GameData) {
     const [progress, setProgress] = React.useState('')
     function onProgressSelected(value:string) {
         setProgress(value)
@@ -84,8 +84,8 @@ export default function GameCard({data}:GameData) {
     )
 }
 
-export function GameCardTest() {
+export function GameBannerTest() {
     const data = { id: 86463, cover: 169899, genres: [ 10, 14, 31, 32 ], name: 'Choo-Choo! Train Rides!', release_dates: [ 288953 ], similar_games: [ 25311, 25646, 80916, 96217, 105269, 106987, 111130, 113360, 113895, 118871 ], summary: 'Understand that your old world is no longer exists. You have only a locomotive, a pair of companions and tail of mutated wild animals that are hungry as never before. There are only a couple of ways to survive. Which one is better - it\'s up to you.' }
     
-    return <GameCard data={data} />
+    return <GameBanner data={data} />
 }

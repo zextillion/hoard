@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app';
 import Main from './components/Main';
 import NavBar from './components/NavBar';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from './middleware/store';
 import { GameCardTest } from './components/GameCard';
 import CreateAccount from './components/CreateAccount';
 
